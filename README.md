@@ -249,7 +249,7 @@ Registration:-
 
 ## Project Status
 
-Project is: _in progress_
+Project is: _Complete_
 
 ## Problem-Solving Strategy
 
