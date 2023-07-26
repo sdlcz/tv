@@ -865,14 +865,3 @@ reccommendMovieButton.addEventListener('click', () => {
   const movieDetails = movies[randomMovie];
   randomMovieElement.textContent = movieDetails.name;
 });
-// const showMovie = (movies) => {
-//   const movieContainer = document.querySelector("#random-movie");
-//   const randomMovieElement = document.querySelector("#random-name"); /* BUG */
-//   //movieContainer.appendChild(randomMovieElement);
-// };
-// document.addEventListener("DOMContentLoaded", () => {
-//   const showMovieBtn = document.querySelector("#randomise");
-//   showMovieBtn.addEventListener("click", () => { 
-//     showMovie(movies)
-//   });
-// });
