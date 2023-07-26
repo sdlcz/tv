@@ -859,9 +859,11 @@ const movies = [
  ];
 const reccommendMovieButton = document.querySelector(".randomise");
 const randomMovieElement = document.querySelector("#random-name");
+const randomStoryElement = document.querySelector("#random-story");
 
 reccommendMovieButton.addEventListener('click', () => {
   const randomMovie = Math.floor(Math.random() * movies.length);
   const movieDetails = movies[randomMovie];
   randomMovieElement.textContent = movieDetails.name;
+  randomStoryElement.textContent = movieDetails.storyline;
 });
