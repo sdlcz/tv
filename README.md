@@ -1,7 +1,7 @@
 # Project - TastyTV
 
 > TastyTV is a movie and tv show live-streaming service.Client requires promotional website to pubicisize the company and its offerings.
-> Live demo [_here_](https://3q7fgx.csb.app/).
+> Live demo [_here_](https://jxrtpd.csb.app/).
 
 ## Table of Contents
 
