@@ -74,7 +74,7 @@ const addMovies = (movies) => {
   document.querySelector("#movies").innerHTML = "";
 
   movies.forEach((movie) => {
-    addMovie(movie.name, movie.time, movie.storyline);
+    addMovie(movie.time, movie.name, movie.storyline);
   });
 };
 
