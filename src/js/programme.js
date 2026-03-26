@@ -107,12 +107,42 @@ const addMovie = (time, name, storyline, year, runtime, categories) => {
   moviesContainer.appendChild(card);
 };
 
-const addMovies = (movies) => {
-  document.querySelector("#movies").innerHTML = "";
+const addMovies = (movieList) => {
+  const container = document.querySelector("#movies");
+  container.innerHTML = "";
 
-  movies.forEach((movie) => {
+  if (movieList.length === 0) {
+    const msg = document.createElement("p");
+    msg.className = "no-results";
+    msg.textContent = "No movies match your search.";
+    container.appendChild(msg);
+    return;
+  }
+
+  movieList.forEach((movie) => {
     addMovie(movie.time, movie.name, movie.storyline, movie.year, movie.runtime, movie.categories);
   });
 };
 
+const filterMovies = () => {
+  const query = (document.getElementById("search-movies") || { value: "" }).value.trim().toLowerCase();
+  const day = (document.getElementById("filter-day") || { value: "" }).value;
+
+  const filtered = movies.filter((movie) => {
+    const matchesQuery = !query || movie.name.toLowerCase().includes(query);
+    const matchesDay = !day || movie.time.toLowerCase().startsWith(day.toLowerCase());
+    return matchesQuery && matchesDay;
+  });
+
+  addMovies(filtered);
+};
+
+const initFilters = () => {
+  const searchInput = document.getElementById("search-movies");
+  const daySelect = document.getElementById("filter-day");
+  if (searchInput) searchInput.addEventListener("input", filterMovies);
+  if (daySelect) daySelect.addEventListener("change", filterMovies);
+};
+
 addMovies(movies);
+initFilters();

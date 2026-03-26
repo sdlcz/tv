@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>TastyTV &mdash; Programming</title>
+    <title>TastyTV &mdash; Watchlist</title>
     <link rel="stylesheet" href="./src/css/style.css" />
-    <link rel="stylesheet" href="./src/css/programme.css" />
+    <link rel="stylesheet" href="./src/css/watchlist.css" />
   </head>
   <body>
     <header>
@@ -15,30 +15,23 @@
         <ul>
           <li><a href="/">Homepage</a></li>
           <li><a href="announcement.html">Announcement</a></li>
-          <li><a href="programme.html" class="active">Programming</a></li>
+          <li><a href="programme.html">Programming</a></li>
           <li><a href="random.html">Random</a></li>
-          <li><a href="watchlist.html">Watchlist</a></li>
+          <li><a href="watchlist.html" class="active">Watchlist</a></li>
           <li><a href="registration.html">Registration</a></li>
         </ul>
         <button class="theme-toggle" aria-label="Toggle theme">☀️ Light Mode</button>
       </nav>
     </header>
-    <h2>Programming</h2>
-    <main class="programme">
-      <div class="filter-bar">
-        <input
-          type="text"
-          id="search-movies"
-          placeholder="Search by title&hellip;"
-          aria-label="Search movies"
-        />
-        <select id="filter-day" aria-label="Filter by day">
-          <option value="">All Days</option>
-          <option value="monday">Monday</option>
-          <option value="tuesday">Tuesday</option>
-        </select>
+    <h2>My Watchlist</h2>
+    <main class="watchlist-page">
+      <div class="watchlist-actions" style="display:none;">
+        <button class="wl-clear-btn" id="wl-clear-all">Clear All</button>
       </div>
-      <div id="movies"></div>
+      <p class="watchlist-empty" id="watchlist-empty">
+        Your watchlist is empty. Head over to <a href="random.html">Random</a> to discover a movie and save it here!
+      </p>
+      <div id="watchlist-items"></div>
     </main>
     <footer>
       <div class="social-links" id="font-type">
@@ -56,7 +49,7 @@
         <p>&#169;TastyTV &#174; ALL RIGHTS RESERVED</p>
       </div>
     </footer>
-    <script src="./src/js/programme.js"></script>
+    <script src="./src/js/watchlist.js"></script>
     <script src="./src/js/theme.js"></script>
   </body>
 </html>
