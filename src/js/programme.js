@@ -49,32 +49,69 @@ const movies = [
   }
 ];
 
-const addMovie = (time, name, storyline) => {
-  const timeContainer = document.querySelector("#movies");
+const formatRuntime = (runtime) => {
+  const rt = parseInt(runtime, 10);
+  if (isNaN(rt) || rt <= 0) return "";
+  const hours = Math.floor(rt / 60);
+  const mins = rt % 60;
+  return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+};
+
+const addMovie = (time, name, storyline, year, runtime, categories) => {
   const moviesContainer = document.querySelector("#movies");
-  const storylineContainer = document.querySelector("#movies");
 
-  const timeElement = document.createElement("h2");
-  const movieElement = document.createElement("h3");
-  const storylineElement = document.createElement("p");
+  const card = document.createElement("div");
+  card.className = "movie-card";
 
-  timeElement.textContent = time;
-  movieElement.textContent = name;
-  storylineElement.textContent = storyline;
+  const timeEl = document.createElement("p");
+  timeEl.className = "movie-time";
+  timeEl.textContent = time;
 
-  timeContainer.appendChild(timeElement);
-  moviesContainer.appendChild(movieElement);
-  storylineContainer.appendChild(storylineElement);
+  const titleEl = document.createElement("h3");
+  titleEl.className = "movie-title";
+  titleEl.textContent = name;
 
-  timeElement.style.padding = "15px";
-  timeElement.style.textAlign = "left";
+  const metaParts = [];
+  if (year) metaParts.push(year);
+  const runtimeStr = formatRuntime(runtime);
+  if (runtimeStr) metaParts.push(runtimeStr);
+  if (metaParts.length > 0) {
+    const metaEl = document.createElement("p");
+    metaEl.className = "movie-meta";
+    metaEl.textContent = metaParts.join(" · ");
+    card.appendChild(timeEl);
+    card.appendChild(titleEl);
+    card.appendChild(metaEl);
+  } else {
+    card.appendChild(timeEl);
+    card.appendChild(titleEl);
+  }
+
+  const storylineEl = document.createElement("p");
+  storylineEl.className = "movie-storyline";
+  storylineEl.textContent = storyline;
+  card.appendChild(storylineEl);
+
+  if (categories && categories.length > 0) {
+    const badgesEl = document.createElement("div");
+    badgesEl.className = "genre-badges";
+    categories.forEach((cat) => {
+      const badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = cat;
+      badgesEl.appendChild(badge);
+    });
+    card.appendChild(badgesEl);
+  }
+
+  moviesContainer.appendChild(card);
 };
 
 const addMovies = (movies) => {
   document.querySelector("#movies").innerHTML = "";
 
   movies.forEach((movie) => {
-    addMovie(movie.time, movie.name, movie.storyline);
+    addMovie(movie.time, movie.name, movie.storyline, movie.year, movie.runtime, movie.categories);
   });
 };
 

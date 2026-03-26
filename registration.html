@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Markup-Registration</title>
+    <title>TastyTV &mdash; Registration</title>
     <link rel="stylesheet" href="./src/css/style.css" />
     <link rel="stylesheet" href="./src/css/registration.css" />
   </head>
@@ -17,7 +17,7 @@
           <li><a href="announcement.html">Announcement</a></li>
           <li><a href="programme.html">Programming</a></li>
           <li><a href="random.html">Random</a></li>
-          <li><a href="registration.html">Registration</a></li>
+          <li><a href="registration.html" class="active">Registration</a></li>
         </ul>
       </nav>
     </header>
@@ -26,19 +26,14 @@
       <form id="regForm">
         <div class="register">
           <input id="name-input" type="text" placeholder="Full Name" />
-          <br /><br />
           <input id="phone-input" type="tel" placeholder="Phone Number" />
-          <br /><br />
           <input id="email-input" type="email" placeholder="Email" />
-          <br /><br />
           <input id="password-input" type="password" placeholder="Password" />
-          <br /><br />
           <input
             id="confirm-password-input"
             type="password"
             placeholder="Confirm Password"
           />
-          <br /><br />
           <button class="button" id="reset" type="reset">Reset</button>
         </div>
         <div class="register">
@@ -47,9 +42,8 @@
             type="text"
             placeholder="Movie Genre Preference"
             cols="30"
-            rows="10"
+            rows="5"
           ></textarea>
-          <br /><br />
           <label>
             Preferred contact method
             <input type="radio" name="method" value="email" />
@@ -57,12 +51,10 @@
             <input type="radio" name="method" value="phone" />
             Phone
           </label>
-          <br /><br />
-          <label>
+          <label for="no-announcements-input">
+            <input type="checkbox" id="no-announcements-input" />
             Click here if you do not want to receive announcements
-            <input type="checkbox" />
           </label>
-          <br /><br />
           <button class="button" id="submit">Register</button>
         </div>
         <p id="message"></p>
@@ -70,15 +62,15 @@
     </main>
     <footer>
       <div class="social-links" id="font-type">
-        <a href="#">Youtube</a>
+        <a href="https://www.youtube.com/" target="_blank">Youtube</a>
         <span class="pipeline">|</span>
-        <a href="#">Instagram</a>
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
         <span class="pipeline">|</span>
-        <a href="#">Twitter</a>
+        <a href="https://twitter.com/" target="_blank">Twitter</a>
         <span class="pipeline">|</span>
-        <a href="#">Facebook</a>
+        <a href="https://en-gb.facebook.com/" target="_blank">Facebook</a>
         <span class="pipeline">|</span>
-        <a href="#">LinkedIn</a>
+        <a href="https://uk.linkedin.com/" target="_blank">LinkedIn</a>
       </div>
       <div class="copyright">
         <p>&#169;TastyTV &#174; ALL RIGHTS RESERVED</p>
