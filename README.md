@@ -19,6 +19,13 @@
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
 
+## Quick Start
+
+```bash
+npm install
+npm start   # serves the site at http://localhost:3000 and opens it in your browser
+```
+
 ## General Information
 
 ### Introduction
@@ -99,6 +106,10 @@ Wireframes and User Stories:
 - **Form validation** (PR #2) — the registration form validates that all required fields are filled and that the two password fields match before accepting a submission.
 - **Announcement page** (PR #2) — `announcement.html` was created with placeholder content, fixing the previously broken navigation link.
 - **CSS path and argument order fixes** (PR #2) — corrected a CSS `href` path typo and fixed the argument order in `programme.js`'s `addMovie` calls.
+- **npm start dev server** (PR #5) — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS enabled and auto-opens the browser.
+- **Programme search & filter** (PR #5) — a text input and day-of-week dropdown (All Days / Monday / Tuesday) sit above the movie grid on the Programme page. Both filters work together in real time; a "No movies match your search." message is shown when nothing matches.
+- **Watchlist** (PR #5) — after a Random recommendation an "＋ Add to Watchlist" button appears; it flips to "✓ In Watchlist" on save and won't duplicate. `watchlist.html` renders all saved movies with title, year · runtime, storyline, genre badges, per-item Remove buttons, and a Clear All action. Data is persisted in `localStorage` under the key `tastytvWatchlist`.
+- **Theme toggle** (PR #5) — every page header has a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode"). The full site re-themes instantly via CSS custom properties (`--bg`, `--card-bg`, `--text-muted`, etc.) defined in `style.css`; the preference is saved in `localStorage` under the key `tastytvTheme` and restored on every page load.
 
 ## Setup
 
@@ -107,7 +118,14 @@ Where is it located?
 > Web link [_here_](https://1jyqr.csb.app/).
 > CodeSandbox link [_here_](https://codesandbox.io/s/project-tastytv-sp-1jyqr).
 
-To run locally, clone the repository and open `index.html` in any modern browser. No build step is required.
+To run locally, clone the repository and then:
+
+```bash
+npm install
+npm start   # starts http-server on http://localhost:3000, CORS enabled, auto-opens browser
+```
+
+Alternatively, open `index.html` directly in any modern browser without a build step.
 
 To run the test suite:
 
@@ -132,7 +150,7 @@ npm test
 
 ### Retrospective
 
-The project went through three agent-driven improvement cycles after the initial build. See [Agent Changes](#agent-changes) for a full breakdown.
+The project went through four agent-driven improvement cycles after the initial build. See [Agent Changes](#agent-changes) for a full breakdown.
 
 ## Usage
 
@@ -157,11 +175,13 @@ Usage across pages listed below:
 - Displays the twelve-hour streaming programme schedule dynamically via `programme.js`.
   Monday 09:00–21:00: one movie repeats; 21:00–09:00 (Tuesday): a different movie repeats.
 - Each card shows: broadcast time, title, year · runtime, genre badges, and plot summary.
+- **Search & Filter bar** — a text input above the grid filters cards in real time as you type (case-insensitive). A day dropdown (All Days / Monday / Tuesday) narrows results by air day. Both filters combine — e.g. search "aladdin" + Monday → 1 result. A "No movies match your search." message is shown when the filtered list is empty.
 
 **Random:**
 - Clicking "Recommend a Movie" picks a random film from a 50-title catalogue.
 - The selected movie's name, storyline, year · runtime metadata, and genre badges are displayed.
 - A flash animation highlights the card on each recommendation.
+- An **＋ Add to Watchlist** button appears after the first recommendation. Once the movie is saved the button text changes to **✓ In Watchlist** and will not add duplicates.
   See `random.js` for code.
 
 **Registration:**
@@ -170,6 +190,20 @@ Usage across pages listed below:
 - On valid submission a personalised message is displayed: `Alice Smith, Thank you for registering…`
 - Clicking Reset clears all fields and removes any displayed message.
   See `registration.js` for code.
+
+**Watchlist:**
+- Displays all movies saved from the Random page.
+- Each saved movie card shows: title, year · runtime, storyline, genre badges, and an individual **Remove** button.
+- A **Clear All** button at the top removes all saved movies at once.
+- When the list is empty, a message prompts the user to visit the Random page.
+- Data is persisted in `localStorage` under the key `tastytvWatchlist`.
+  See `watchlist.js` for code.
+
+**Theme Toggle (all pages):**
+- Every page header contains a **☀️ Light Mode / 🌙 Dark Mode** toggle button.
+- Clicking the button instantly re-themes the entire site via CSS custom properties.
+- The chosen preference is saved in `localStorage` under the key `tastytvTheme` and restored automatically on every page load.
+  See `theme.js` for code.
 
 ## Agent Changes
 
@@ -207,6 +241,15 @@ A full Jest + jsdom test suite was added to guard against regressions in all Jav
 | `tests/random.test.js` | Button-click tests — name/storyline population, `.random-meta` and `.random-badges` creation, flash class, badge refresh on repeat clicks |
 | `tests/registration.test.js` | Form validation tests — empty fields, individual missing fields, password mismatch, success message template, whitespace trimming, and form reset |
 
+### PR #5 — Search, Watchlist & Theme Toggle (`copilot/update-readme-with-changes`)
+
+Three new user-facing features plus a localhost dev server were added across all pages:
+
+- **`npm start` dev server** — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS headers enabled and auto-opens the browser. No build step is required.
+- **Programme search & filter** (`src/js/programme.js` + `programme.html`) — `filterMovies()` and `initFilters()` appended to `programme.js`; no changes to the existing `addMovies()` contract. A `.filter-bar` with a text input (`#search-movies`) and a day dropdown (`#filter-day`) inserted above `#movies` in `programme.html`.
+- **Watchlist** (`src/js/watchlist.js` + `watchlist.html` + `src/css/watchlist.css`) — new `watchlist.js` module manages `localStorage` (key `tastytvWatchlist`): `getWatchlist`, `saveWatchlist`, `renderWatchlist`, and `initClearAll`. `random.js` updated to show/hide a `.watchlist-btn` after each recommendation and toggle its label between "＋ Add to Watchlist" and "✓ In Watchlist". `watchlist.html` is a complete new page.
+- **Theme toggle** (`src/js/theme.js` + `src/css/style.css`) — `theme.js` exposes `applyTheme` and `initTheme`; all colours migrated to CSS custom properties in `style.css` with a `[data-theme="light"]` override block; every page now loads `theme.js` and includes a `.theme-toggle` button in the header.
+
 ## Testing
 
 The project uses **Jest** with **jest-environment-jsdom** for unit and DOM integration tests.
@@ -223,11 +266,14 @@ npm test
 ```
 PASS tests/formatRuntime.test.js
 PASS tests/programme.test.js
+PASS tests/programmeFilter.test.js
 PASS tests/random.test.js
 PASS tests/registration.test.js
+PASS tests/theme.test.js
+PASS tests/watchlist.test.js
 
-Test Suites: 4 passed, 4 total
-Tests:       40 passed, 40 total
+Test Suites: 7 passed, 7 total
+Tests:       70 passed, 70 total
 ```
 
 ### Test Coverage Summary
@@ -251,6 +297,15 @@ Tests:       40 passed, 40 total
 - `addMovies` clears existing content before re-rendering
 - `addMovies` handles minimal movie objects (no meta, no badges)
 
+**`programmeFilter.test.js` — search & filter (7 tests)**
+- All 8 cards shown when search and day are empty
+- Title keyword filter is case-insensitive (e.g. "avengers" → 1 card)
+- Day filter for Monday returns the 4 Monday movies
+- Day filter for Tuesday returns the 4 Tuesday movies
+- Combined title + day filter returns the correct subset (e.g. "aladdin" + Monday → 1 card)
+- Empty-state `.no-results` message shown when no cards match
+- Leading/trailing whitespace in the search query is trimmed
+
 **`random.js` movie recommendation (10 tests)**
 - Clicking the button populates the movie name and storyline
 - Clicking creates a `.random-meta` element that is non-empty and contains a 4-digit year
@@ -268,6 +323,33 @@ Tests:       40 passed, 40 total
 - Success message uses the exact expected template string
 - Whitespace-only field values are treated as empty (trimming)
 - Resetting the form clears the message element
+
+**`watchlist.test.js` — watchlist rendering & actions (12 tests)**
+- Empty message shown when watchlist has no items
+- Cards rendered and empty message hidden when items are present
+- Title rendered for each watchlist item
+- Meta line (`year · runtime`) rendered for items with that data
+- Genre badges rendered for items with categories
+- Storyline text rendered for each item
+- Remove button present on each card
+- Actions bar visible when list has items
+- Clicking Remove deletes the card from the DOM
+- Removing the last item shows the empty message again
+- Clicking Clear All removes all cards
+- Clicking Clear All shows the empty message
+
+**`theme.test.js` — theme toggle (11 tests)**
+- Defaults to dark theme when no preference is saved
+- Restores saved dark theme on load
+- Restores saved light theme on load
+- Button label reads "Light Mode" in dark theme
+- Button label reads "Dark Mode" in light theme
+- Clicking the button switches dark → light
+- Clicking the button switches light → dark
+- Button label updates to "Dark Mode" after switching to light
+- Button label updates to "Light Mode" after switching back to dark
+- Theme preference written to `localStorage` on toggle
+- Toggling twice returns to the original theme
 
 ## Project Status
 
