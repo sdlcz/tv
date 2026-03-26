@@ -857,13 +857,53 @@ const movies = [
        "A Cape Verdean woman navigates her way through Lisbon, following the scanty physical traces her deceased husband left behind and discovering his secret, illicit life."
    }
  ];
+const formatRuntime = (runtime) => {
+  const rt = parseInt(runtime, 10);
+  if (isNaN(rt) || rt <= 0) return "";
+  const hours = Math.floor(rt / 60);
+  const mins = rt % 60;
+  return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+};
+
 const reccommendMovieButton = document.querySelector(".randomise");
 const randomMovieElement = document.querySelector("#random-name");
 const randomStoryElement = document.querySelector("#random-story");
 
 reccommendMovieButton.addEventListener('click', () => {
-  const randomMovie = Math.floor(Math.random() * movies.length);
-  const movieDetails = movies[randomMovie];
+  const randomIndex = Math.floor(Math.random() * movies.length);
+  const movieDetails = movies[randomIndex];
   randomMovieElement.textContent = movieDetails.name;
+
+  // Render year, runtime, genres
+  let metaEl = document.querySelector(".random-meta");
+  if (!metaEl) {
+    metaEl = document.createElement("p");
+    metaEl.className = "random-meta";
+    randomMovieElement.insertAdjacentElement("afterend", metaEl);
+  }
+  const runtimeStr = formatRuntime(movieDetails.runtime);
+  metaEl.textContent = [movieDetails.year, runtimeStr].filter(Boolean).join(" · ");
+
+  // Render genre badges
+  let badgesEl = document.querySelector(".random-badges");
+  if (!badgesEl) {
+    badgesEl = document.createElement("div");
+    badgesEl.className = "random-badges";
+    metaEl.insertAdjacentElement("afterend", badgesEl);
+  }
+  badgesEl.innerHTML = "";
+  (movieDetails.categories || []).forEach((cat) => {
+    const badge = document.createElement("span");
+    badge.className = "random-badge";
+    badge.textContent = cat;
+    badgesEl.appendChild(badge);
+  });
+
   randomStoryElement.textContent = movieDetails.storyline;
+
+  // Add highlight animation via CSS class
+  const card = document.querySelector("#random-movie");
+  card.classList.remove("movie-flash");
+  void card.offsetWidth; // trigger reflow to restart animation
+  card.classList.add("movie-flash");
 });
