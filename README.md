@@ -77,6 +77,28 @@ Wireframes and User Stories:
 
 *Two-column registration form with full validation: all fields required, passwords must match. A personalised success message is shown on valid submission.*
 
+### Programme Page — Search & Filter (PR #6)
+
+| All movies | Filtered to "avengers" |
+|---|---|
+| ![programme](https://github.com/user-attachments/assets/71b32c20-9bd0-4776-b06d-cca1d9ffb687) | ![filtered](https://github.com/user-attachments/assets/d534294a-5177-4e03-9e1c-da82b71c254a) |
+
+*Real-time title search and day-of-week dropdown filter the movie grid. An empty-state message is shown when no cards match.*
+
+### Random Movie — Watchlist Button (PR #6)
+
+![random + watchlist](https://github.com/user-attachments/assets/87e82da5-d4e4-4bda-97f6-6cb3e092d57c)
+
+*After a recommendation the "＋ Add to Watchlist" button appears. Once saved it flips to "✓ In Watchlist". The Watchlist page renders all saved movies with metadata, genre badges, and per-item Remove / Clear All actions.*
+
+### Theme Toggle — Dark & Light (PR #6)
+
+| Dark | Light |
+|---|---|
+| ![dark](https://github.com/user-attachments/assets/4a7121fd-2f91-4687-9779-af2c38ef4a33) | ![light](https://github.com/user-attachments/assets/04034fff-934c-492a-8419-555d9ecf1fda) |
+
+*Every page header includes a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode"). The preference is persisted in `localStorage` and restored on every page load.*
+
 ## Technologies Used
 
 - HTML - version: 5.0
@@ -106,10 +128,10 @@ Wireframes and User Stories:
 - **Form validation** (PR #2) — the registration form validates that all required fields are filled and that the two password fields match before accepting a submission.
 - **Announcement page** (PR #2) — `announcement.html` was created with placeholder content, fixing the previously broken navigation link.
 - **CSS path and argument order fixes** (PR #2) — corrected a CSS `href` path typo and fixed the argument order in `programme.js`'s `addMovie` calls.
-- **npm start dev server** (PR #5) — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS enabled and auto-opens the browser.
-- **Programme search & filter** (PR #5) — a text input and day-of-week dropdown (All Days / Monday / Tuesday) sit above the movie grid on the Programme page. Both filters work together in real time; a "No movies match your search." message is shown when nothing matches.
-- **Watchlist** (PR #5) — after a Random recommendation an "＋ Add to Watchlist" button appears; it flips to "✓ In Watchlist" on save and won't duplicate. `watchlist.html` renders all saved movies with title, year · runtime, storyline, genre badges, per-item Remove buttons, and a Clear All action. Data is persisted in `localStorage` under the key `tastytvWatchlist`.
-- **Theme toggle** (PR #5) — every page header has a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode"). The full site re-themes instantly via CSS custom properties (`--bg`, `--card-bg`, `--text-muted`, etc.) defined in `style.css`; the preference is saved in `localStorage` under the key `tastytvTheme` and restored on every page load.
+- **npm start dev server** (PR #6) — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS enabled and auto-opens the browser.
+- **Programme search & filter** (PR #6) — a text input and day-of-week dropdown (All Days / Monday / Tuesday) sit above the movie grid on the Programme page. Both filters work together in real time; a "No movies match your search." message is shown when nothing matches.
+- **Watchlist** (PR #6) — after a Random recommendation an "＋ Add to Watchlist" button appears; it flips to "✓ In Watchlist" on save and won't duplicate. `watchlist.html` renders all saved movies with title, year · runtime, storyline, genre badges, per-item Remove buttons, and a Clear All action. Data is persisted in `localStorage` under the key `tastytvWatchlist`.
+- **Theme toggle** (PR #6) — every page header has a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode"). The full site re-themes instantly via CSS custom properties (`--bg`, `--card-bg`, `--text-muted`, etc.) defined in `style.css`; the preference is saved in `localStorage` under the key `tastytvTheme` and restored on every page load.
 
 ## Setup
 
@@ -241,14 +263,14 @@ A full Jest + jsdom test suite was added to guard against regressions in all Jav
 | `tests/random.test.js` | Button-click tests — name/storyline population, `.random-meta` and `.random-badges` creation, flash class, badge refresh on repeat clicks |
 | `tests/registration.test.js` | Form validation tests — empty fields, individual missing fields, password mismatch, success message template, whitespace trimming, and form reset |
 
-### PR #5 — Search, Watchlist & Theme Toggle (`copilot/update-readme-with-changes`)
+### PR #6 — Search, Watchlist & Theme Toggle (`copilot/suggest-more-features`)
 
 Three new user-facing features plus a localhost dev server were added across all pages:
 
-- **`npm start` dev server** — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS headers enabled and auto-opens the browser. No build step is required.
-- **Programme search & filter** (`src/js/programme.js` + `programme.html`) — `filterMovies()` and `initFilters()` appended to `programme.js`; no changes to the existing `addMovies()` contract. A `.filter-bar` with a text input (`#search-movies`) and a day dropdown (`#filter-day`) inserted above `#movies` in `programme.html`.
-- **Watchlist** (`src/js/watchlist.js` + `watchlist.html` + `src/css/watchlist.css`) — new `watchlist.js` module manages `localStorage` (key `tastytvWatchlist`): `getWatchlist`, `saveWatchlist`, `renderWatchlist`, and `initClearAll`. `random.js` updated to show/hide a `.watchlist-btn` after each recommendation and toggle its label between "＋ Add to Watchlist" and "✓ In Watchlist". `watchlist.html` is a complete new page.
-- **Theme toggle** (`src/js/theme.js` + `src/css/style.css`) — `theme.js` exposes `applyTheme` and `initTheme`; all colours migrated to CSS custom properties in `style.css` with a `[data-theme="light"]` override block; every page now loads `theme.js` and includes a `.theme-toggle` button in the header.
+- **npm start dev server** (PR #6) — `http-server` added as a devDependency; `npm start` serves the site at `http://localhost:3000` with CORS headers enabled and auto-opens the browser. No build step is required.
+- **Programme search & filter** (PR #6) — `filterMovies()` and `initFilters()` appended to `programme.js`; no changes to the existing `addMovies()` contract. A `.filter-bar` with a text input (`#search-movies`) and a day dropdown (`#filter-day`) inserted above `#movies` in `programme.html`.
+- **Watchlist** (PR #6) — new `watchlist.js` module manages `localStorage` (key `tastytvWatchlist`): `getWatchlist`, `saveWatchlist`, `renderWatchlist`, and `initClearAll`. `random.js` updated to show/hide a `.watchlist-btn` after each recommendation and toggle its label between "＋ Add to Watchlist" and "✓ In Watchlist". `watchlist.html` is a complete new page.
+- **Theme toggle** (PR #6) — `theme.js` exposes `applyTheme` and `initTheme`; all colours migrated to CSS custom properties in `style.css` with a `[data-theme="light"]` override block; every page now loads `theme.js` and includes a `.theme-toggle` button in the header.
 
 ## Testing
 
