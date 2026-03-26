@@ -865,13 +865,30 @@ const formatRuntime = (runtime) => {
   return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
 };
 
+const WATCHLIST_KEY = "tastytvWatchlist";
+
+const getWatchlist = () => {
+  try {
+    return JSON.parse(localStorage.getItem(WATCHLIST_KEY)) || [];
+  } catch (_) {
+    return [];
+  }
+};
+
+const saveWatchlist = (list) => {
+  localStorage.setItem(WATCHLIST_KEY, JSON.stringify(list));
+};
+
 const reccommendMovieButton = document.querySelector(".randomise");
 const randomMovieElement = document.querySelector("#random-name");
 const randomStoryElement = document.querySelector("#random-story");
 
+let currentMovie = null;
+
 reccommendMovieButton.addEventListener('click', () => {
   const randomIndex = Math.floor(Math.random() * movies.length);
   const movieDetails = movies[randomIndex];
+  currentMovie = movieDetails;
   randomMovieElement.textContent = movieDetails.name;
 
   // Render year, runtime, genres
@@ -906,4 +923,41 @@ reccommendMovieButton.addEventListener('click', () => {
   card.classList.remove("movie-flash");
   void card.offsetWidth; // trigger reflow to restart animation
   card.classList.add("movie-flash");
+
+  // Show watchlist button and update its state
+  const wlBtn = document.querySelector(".watchlist-btn");
+  if (wlBtn) {
+    wlBtn.classList.add("visible");
+    const alreadySaved = getWatchlist().some((m) => m.name === movieDetails.name);
+    if (alreadySaved) {
+      wlBtn.textContent = "✓ In Watchlist";
+      wlBtn.classList.add("saved");
+    } else {
+      wlBtn.textContent = "＋ Add to Watchlist";
+      wlBtn.classList.remove("saved");
+    }
+  }
 });
+
+const initWatchlistButton = () => {
+  const wlBtn = document.querySelector(".watchlist-btn");
+  if (!wlBtn) return;
+  wlBtn.addEventListener("click", () => {
+    if (!currentMovie || wlBtn.classList.contains("saved")) return;
+    const list = getWatchlist();
+    if (!list.some((m) => m.name === currentMovie.name)) {
+      list.push({
+        name: currentMovie.name,
+        year: currentMovie.year,
+        runtime: currentMovie.runtime,
+        categories: currentMovie.categories,
+        storyline: currentMovie.storyline
+      });
+      saveWatchlist(list);
+    }
+    wlBtn.textContent = "✓ In Watchlist";
+    wlBtn.classList.add("saved");
+  });
+};
+
+initWatchlistButton();

@@ -2,6 +2,49 @@
   padding: 32px 48px 48px;
 }
 
+.filter-bar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-bar input,
+.filter-bar select {
+  background-color: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.3s ease;
+}
+
+.filter-bar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-bar input::placeholder {
+  color: var(--meta-color);
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+  border-color: var(--accent);
+}
+
+.no-results {
+  color: var(--text-muted);
+  font-size: 1rem;
+  text-align: center;
+  padding: 40px 0;
+  grid-column: 1 / -1;
+}
+
 #movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -9,11 +52,11 @@
 }
 
 .movie-card {
-  background-color: #1f1f1f;
-  border: 1px solid #333;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
 
 .movie-card:hover {
@@ -24,7 +67,7 @@
 .movie-card .movie-time {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #e50914;
+  color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
@@ -34,19 +77,19 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--h2-color);
   margin-bottom: 10px;
 }
 
 .movie-card .movie-meta {
   font-size: 0.8rem;
-  color: #777;
+  color: var(--meta-color);
   margin-bottom: 10px;
 }
 
 .movie-card .movie-storyline {
   font-size: 0.88rem;
-  color: #b3b3b3;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 12px;
 }
@@ -58,8 +101,8 @@
 }
 
 .badge {
-  background-color: #333;
-  color: #b3b3b3;
+  background-color: var(--badge-bg);
+  color: var(--text-muted);
   font-size: 0.75rem;
   padding: 3px 8px;
   border-radius: 4px;

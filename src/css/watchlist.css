@@ -1,0 +1,120 @@
+.watchlist-page {
+  padding: 32px 48px 48px;
+}
+
+.watchlist-empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 60px 0;
+}
+
+.watchlist-empty a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.watchlist-empty a:hover {
+  text-decoration: underline;
+}
+
+#watchlist-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.watchlist-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.watchlist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.2);
+}
+
+.watchlist-card .wl-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--h2-color);
+}
+
+.watchlist-card .wl-meta {
+  font-size: 0.8rem;
+  color: var(--meta-color);
+}
+
+.watchlist-card .wl-story {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.wl-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wl-badge {
+  background-color: var(--badge-bg);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.wl-remove-btn {
+  margin-top: 4px;
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  align-self: flex-start;
+}
+
+.wl-remove-btn:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.watchlist-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.wl-clear-btn {
+  background-color: transparent;
+  color: var(--meta-color);
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.wl-clear-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
