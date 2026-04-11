@@ -11,7 +11,9 @@
   border: 1px solid #333;
   border-radius: 8px;
   padding: 28px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .announce:hover {
@@ -40,4 +42,68 @@
   color: #b3b3b3;
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+/* ============================================
+   RESPONSIVE: Announcement Page
+   Mobile: 1 column | Tablet: 2 columns | Desktop: 2+ columns
+   ============================================ */
+
+/* MOBILE: 375px - 767px */
+@media (max-width: 767px) {
+  .announcement {
+    padding: 24px 16px 32px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .announce {
+    padding: 20px;
+  }
+
+  .announce p {
+    font-size: 0.9rem;
+  }
+
+  .announce-img img {
+    min-height: 100px;
+  }
+
+  .lists {
+    font-size: 0.9rem;
+  }
+}
+
+/* TABLET: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .announcement {
+    padding: 32px 24px 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .announce {
+    padding: 24px;
+  }
+
+  .announce p {
+    font-size: 0.92rem;
+  }
+}
+
+/* DESKTOP: 1024px and above */
+@media (min-width: 1024px) {
+  .announcement {
+    padding: 32px 48px 48px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .announce {
+    padding: 28px;
+  }
+
+  .announce p {
+    font-size: 0.95rem;
+  }
 }

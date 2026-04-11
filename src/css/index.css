@@ -11,7 +11,10 @@
   border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 28px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.3s ease;
 }
 
 .info:hover {
@@ -20,7 +23,7 @@
 }
 
 .info strong {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.1rem;
   color: var(--h2-color);
   display: block;
@@ -61,4 +64,76 @@
   border-radius: 6px;
   display: block;
   margin: 0 auto;
+}
+
+/* ============================================
+   RESPONSIVE: Homepage Layout
+   Mobile: 1 column | Tablet: 2 columns | Desktop: 3 columns
+   ============================================ */
+
+/* MOBILE: 375px - 767px */
+@media (max-width: 767px) {
+  .homepage {
+    padding: 24px 16px;
+    grid-gap: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    padding: 20px;
+  }
+
+  .info strong {
+    font-size: 1rem;
+  }
+
+  .info p {
+    font-size: 0.9rem;
+  }
+
+  .info ol li a {
+    font-size: 0.9rem;
+  }
+}
+
+/* TABLET: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homepage {
+    padding: 32px 24px;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info {
+    padding: 24px;
+  }
+
+  .info strong {
+    font-size: 1.05rem;
+  }
+
+  .info p {
+    font-size: 0.92rem;
+  }
+}
+
+/* DESKTOP: 1024px and above */
+@media (min-width: 1024px) {
+  .homepage {
+    padding: 40px 48px;
+    grid-gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .info {
+    padding: 28px;
+  }
+
+  .info strong {
+    font-size: 1.1rem;
+  }
+
+  .info p {
+    font-size: 0.95rem;
+  }
 }

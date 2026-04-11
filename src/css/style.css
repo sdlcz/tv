@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap");
 
 :root {
-  --bg: #141414;
-  --card-bg: #1f1f1f;
-  --card-border: #333;
+  --bg: #0f1419;
+  --card-bg: #1a2332;
+  --card-border: #2d3d4f;
   --text: #e5e5e5;
   --text-muted: #b3b3b3;
-  --header-bg: #0d0d0d;
-  --footer-bg: #0d0d0d;
-  --accent: #e50914;
+  --header-bg: #0a0e15;
+  --footer-bg: #0a0e15;
+  --accent: #00d4ff;
   --meta-color: #777;
-  --badge-bg: #333;
-  --input-bg: #1f1f1f;
-  --input-border: #444;
-  --pipeline-color: #444;
+  --badge-bg: #2d3d4f;
+  --input-bg: #1a2332;
+  --input-border: #2d3d4f;
+  --pipeline-color: #2d3d4f;
   --copyright-color: #555;
   --h2-color: #ffffff;
-  --theme-btn-bg: #1f1f1f;
+  --theme-btn-bg: #1a2332;
   --theme-btn-color: #b3b3b3;
 }
 
@@ -28,7 +28,7 @@
   --text-muted: #555;
   --header-bg: #ffffff;
   --footer-bg: #f0f0f0;
-  --accent: #e50914;
+  --accent: #00d4ff;
   --meta-color: #888;
   --badge-bg: #e8e8e8;
   --input-bg: #ffffff;
@@ -49,11 +49,13 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 header {
@@ -71,7 +73,7 @@ header {
 }
 
 header h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.8rem;
   color: var(--accent);
@@ -96,12 +98,14 @@ ul li a {
   padding: 8px 16px;
   text-decoration: none;
   color: var(--text-muted);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
   border-radius: 4px;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 ul li a:hover,
@@ -121,7 +125,7 @@ a:hover {
 }
 
 h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.8rem;
   color: var(--h2-color);
@@ -182,10 +186,13 @@ footer {
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 0.85rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   white-space: nowrap;
 }
 
@@ -193,4 +200,212 @@ footer {
   background-color: var(--accent);
   color: #ffffff;
   border-color: var(--accent);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN: Mobile-First Approach
+   Breakpoints: Mobile (375px) | Tablet (768px) | Desktop (1024px+)
+   ============================================ */
+
+/* Hamburger Menu Button - Mobile Only */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger-btn span {
+  width: 24px;
+  height: 3px;
+  background-color: var(--text-muted);
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-btn:hover span {
+  background-color: var(--text);
+}
+
+/* Mobile Navigation Menu */
+.nav-menu-mobile {
+  display: none;
+  position: absolute;
+  top: 68px;
+  right: 0;
+  left: 0;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--card-border);
+  flex-direction: column;
+  gap: 0;
+  padding: 16px 20px;
+  list-style: none;
+  z-index: 99;
+  max-height: calc(100vh - 68px);
+  overflow-y: auto;
+}
+
+.nav-menu-mobile.active {
+  display: flex;
+}
+
+.nav-menu-mobile li {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.nav-menu-mobile li:last-child {
+  border-bottom: none;
+}
+
+.nav-menu-mobile a {
+  display: block;
+  padding: 12px 0;
+  color: var(--text-muted);
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.nav-menu-mobile a:hover,
+.nav-menu-mobile a.active {
+  color: var(--accent);
+}
+
+/* ============================================
+   TABLET & DESKTOP: Media Queries
+   ============================================ */
+
+/* TABLET: 768px and above */
+@media (min-width: 768px) {
+  header {
+    padding: 0 32px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  footer {
+    padding: 20px 32px;
+  }
+
+  /* Hide mobile nav, show desktop nav */
+  .hamburger-btn {
+    display: none !important;
+  }
+
+  .nav-menu-mobile {
+    display: none !important;
+  }
+
+  ul {
+    gap: 4px;
+  }
+
+  ul li a {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+
+/* DESKTOP: 1024px and above */
+@media (min-width: 1024px) {
+  header {
+    padding: 0 48px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  footer {
+    padding: 20px 48px;
+  }
+
+  ul li a {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* ============================================
+   MOBILE: Default (375px - 767px)
+   Mobile-first: Set mobile styles in main rules above
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Show hamburger button and mobile nav on mobile */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  header {
+    padding: 0 16px;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    padding: 24px 0 12px;
+  }
+
+  footer {
+    padding: 16px 20px;
+  }
+
+  .social-links {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .social-links a {
+    font-size: 0.8rem;
+  }
+
+  .theme-toggle {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}
+
+/* ============================================
+   IMAGE HOVER ENLARGEMENT
+   Simple scale on hover with shadow effect
+   ============================================ */
+
+img.enlargeable-img {
+  cursor: zoom-in;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+img.enlargeable-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  z-index: 10;
 }

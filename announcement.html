@@ -12,7 +12,20 @@
     <header>
       <h1>TastyTV</h1>
       <nav>
+        <button class="hamburger-btn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul>
+          <li><a href="/">Homepage</a></li>
+          <li><a href="announcement.html" class="active">Announcement</a></li>
+          <li><a href="programme.html">Programming</a></li>
+          <li><a href="random.html">Random</a></li>
+          <li><a href="watchlist.html">Watchlist</a></li>
+          <li><a href="registration.html">Registration</a></li>
+        </ul>
+        <ul class="nav-menu-mobile">
           <li><a href="/">Homepage</a></li>
           <li><a href="announcement.html" class="active">Announcement</a></li>
           <li><a href="programme.html">Programming</a></li>
@@ -26,7 +39,7 @@
     <h2>Announcements</h2>
     <main class="announcement">
       <div class="announce">
-        <p class="announce-img"><img src="" alt="Announcement image" /></p>
+        <p class="announce-img"><img src="" alt="Announcement image" class="enlargeable-img" /></p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -58,5 +71,6 @@
     </footer>
     <script src="./src/js/announcement.js"></script>
     <script src="./src/js/theme.js"></script>
+    <script src="./src/js/navigation.js"></script>
   </body>
 </html>
