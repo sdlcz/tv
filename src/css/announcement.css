@@ -7,8 +7,8 @@
 }
 
 .announce {
-  background-color: #1f1f1f;
-  border: 1px solid #333;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 28px;
   transition:
@@ -18,11 +18,11 @@
 
 .announce:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
 }
 
 .announce p {
-  color: #b3b3b3;
+  color: var(--text-muted);
   line-height: 1.7;
   font-size: 0.95rem;
 }
@@ -32,14 +32,14 @@
   border-radius: 6px;
   display: block;
   min-height: 120px;
-  background-color: #2a2a2a;
+  background-color: var(--badge-bg);
 }
 
 .lists {
   display: list-item;
   padding: 6px 0;
   margin: 4px 0 4px 20px;
-  color: #b3b3b3;
+  color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
 }
