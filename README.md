@@ -55,49 +55,45 @@ Wireframes and User Stories:
 
 ### Homepage
 
-![Homepage](https://github.com/user-attachments/assets/b3c50def-bc00-43ab-9bf9-efdf553bf739)
+![Homepage](./assets/img/screenshot-homepage.png)
 
-*Dark cinematic theme with three info cards: Now Streaming, Company Information (with social media links), and Discover & Enjoy.*
+*Modern Teal theme: Dark charcoal background (#0f1419) with vibrant teal accents (#00d4ff) on the TastyTV logo, navigation highlights, and buttons. Three info cards: Now Streaming, Company Information (with social media links), and Discover & Enjoy.*
 
 ### Programme Page Mockup
 
 ![Programme Page](./assets/img/screenshot-programme.png)
 
-*Movie cards display the broadcast time, title, year · runtime metadata, genre badges, and plot summary.*
+*Programme grid showing 8 movie cards with broadcast times (MONDAY AT 09:00, etc.), titles, year · runtime metadata, coloured genre badges, and plot summaries. Dark slate blue cards (#252d44) against charcoal background. "Programming" nav link highlighted in teal accent colour.*
 
 ### Random Movie Page Mockup
 
 ![Random Movie Page](./assets/img/screenshot-random.png)
 
-*Clicking "Recommend a Movie" picks a random film from 50 titles and shows its title, year · runtime, genre badges, and storyline. A flash animation highlights the card on each click.*
+*Movie recommendation card displays title (Bacurau), year · runtime (2019 · 2h 12m), genre badges (Drama, Western, Adventure, Fantasy, Sci-Fi), and plot storyline. Two action buttons with vibrant teal accents: RECOMMEND A MOVIE button and ✓ IN WATCHLIST button (green). "Random" nav link highlighted in teal.*
 
 ### Registration Page Mockup
 
 ![Registration Page](./assets/img/screenshot-registration.png)
 
-*Two-column registration form with full validation: all fields required, passwords must match. A personalised success message is shown on valid submission.*
+*Two-column registration form with slate blue input fields (#1a2332). Left column: Full Name, Phone Number, Email, Password, Confirm Password fields with Password Strength meter ("Password must be at least strong to register"), and Reset button. Right column: Movie Genre Preference textarea, Preferred contact method radios (Email/Phone), opt-out checkbox, and teal REGISTER button. "Registration" nav link highlighted in teal.*
 
 ### Programme Page — Search & Filter (PR #6)
 
-| All movies | Filtered to "avengers" |
-|---|---|
-| ![programme](https://github.com/user-attachments/assets/71b32c20-9bd0-4776-b06d-cca1d9ffb687) | ![filtered](https://github.com/user-attachments/assets/d534294a-5177-4e03-9e1c-da82b71c254a) |
-
-*Real-time title search and day-of-week dropdown filter the movie grid. An empty-state message is shown when no cards match.*
+*Real-time filtering controls at the top of the Programme page. A search bar ("Search by title...") and dropdown filter ("All Days") above the movie grid allow users to narrow results by title keyword and broadcast day (Monday/Tuesday). Search is case-insensitive. When no movies match the filters, an empty-state message is displayed: "No movies match your search." The filter bar styling uses slate blue backgrounds with teal accent on active selections.*
 
 ### Random Movie — Watchlist Button (PR #6)
 
-![random + watchlist](https://github.com/user-attachments/assets/87e82da5-d4e4-4bda-97f6-6cb3e092d57c)
+*After a recommendation the "＋ ADD TO WATCHLIST" button appears with teal background. Once saved it flips to "✓ IN WATCHLIST" showing the movie is saved. Multiple saved movies are rendered on the Watchlist page as a grid of cards showing title, year · runtime, plot storyline, genre badges, and teal REMOVE buttons. A Clear All button at the top removes all. Empty state message: "Your watchlist is empty. Visit the Random page to add movies."*
 
-*After a recommendation the "＋ Add to Watchlist" button appears. Once saved it flips to "✓ In Watchlist". The Watchlist page renders all saved movies with metadata, genre badges, and per-item Remove / Clear All actions.*
+### Theme Toggle — Dark & Light (PR #6 + Updated for Teal Theme)
+![Toggle Theme](./assets/img/screenshot-theme.png)
+![Toggle Theme](./assets/img/screenshot-watchlist.png)
 
-### Theme Toggle — Dark & Light (PR #6)
-
-| Dark | Light |
+| Dark (Modern Teal) | Light (Teal Accents) |
 |---|---|
-| ![dark](https://github.com/user-attachments/assets/4a7121fd-2f91-4687-9779-af2c38ef4a33) | ![light](https://github.com/user-attachments/assets/04034fff-934c-492a-8419-555d9ecf1fda) |
+| Dark charcoal background (#0f1419) with vibrant teal accents (#00d4ff) on all buttons, links, and highlights | Light gray background (#f4f4f4) with teal accents (#00d4ff) maintained for consistent branding |
 
-*Every page header includes a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode"). The preference is persisted in `localStorage` and restored on every page load.*
+*Every page header includes a toggle button ("☀️ Light Mode" ↔ "🌙 Dark Mode") with teal accent. Clicking toggles between dark and light modes instantly via CSS custom properties. The preference is persisted in `localStorage` under key `tastytvTheme` and restored on every page load. Both themes feature the Modern Teal colour palette for a sleek, tech-forward aesthetic.*
 
 ### Mobile Responsive Design (PR #7)
 
@@ -165,7 +161,7 @@ Wireframes and User Stories:
 - **Random movie recommendation** — clicking "Recommend a Movie" selects a random film from a pool of 50 titles and displays its details instantly.
 - **Registration form** — users can register with their name, email, phone number, and password. A personalised confirmation message is shown on success.
 - **Form reset** — the Reset button clears all input fields and removes any displayed messages.
-- **Active nav link** — the current page's navigation link is highlighted in red.
+- **Active nav link** — the current page's navigation link is highlighted in vibrant teal (#00d4ff).
 - **Mobile-first responsive design** — full-site responsive layout with 3-breakpoint media queries (mobile 375px, tablet 768px, desktop 1024px+) ensuring optimal viewing on all devices.
 - **Burger menu navigation** — mobile navigation collapses into a hamburger menu on screens < 768px with smooth toggle, auto-close on link click, and Escape key support.
 - **Password strength indicator (BLOCKING)** — real-time password strength meter with 4 levels (weak/fair/strong/very-strong); registration submit button disabled until password reaches minimum "Strong" threshold.
@@ -173,7 +169,7 @@ Wireframes and User Stories:
 
 ### Features Added by Agents
 
-- **Dark cinematic theme** (PR #3) — full-site redesign using a near-black background, red accent colour, off-white body text, and card-based layouts.
+- **Modern Teal theme** (PR #3 → Updated PR #8) — full-site redesign initially using a near-black background with red accent. **Updated to Modern Teal palette:** dark charcoal background (#0f1419), vibrant teal accent colour (#00d4ff), off-white body text, and card-based layouts. Unique, sleek, tech-forward aesthetic that differentiates from typical streaming services.
 - **Movie metadata** (PR #3) — each movie card on the Programme and Random pages shows release year and runtime formatted as `Yh Mm` (e.g. `2019 · 2h 4m`).
 - **Genre badges** (PR #3) — coloured pill badges display the genre categories for each movie (e.g. `drama`, `sci-fi`, `action`).
 - **Expanded movie pool** (PR #3) — the random.js movie catalogue was expanded to 50 titles, each enriched with year, runtime, director, writer, actor, and category data.
@@ -347,6 +343,36 @@ A comprehensive mobile-first responsive redesign with enhanced user experience f
 - **Mobile-first CSS strategy** — All base styles target mobile first; media queries add/override for tablet (768px) and desktop (1024px) breakpoints.
 - All 6 HTML pages updated with hamburger button HTML structure and `navigation.js` script inclusion.
 - Zero increase in test suite failures — all existing 70 tests continue to pass.
+
+### PR #8 — Modern Teal Theme Update
+
+A complete visual theme redesign moving from Netflix-style red to a sleek Modern Teal palette:
+
+**Theme Changes:**
+- **Background:** Dark charcoal (#0f1419) — more sophisticated than pure black, reduces eye strain
+- **Accent Colour:** Vibrant teal (#00d4ff) — applied to logo, buttons, links, active nav, borders, and highlights
+- **Cards:** Slate blue (#1a2332) — elegant contrast against charcoal background
+- **Inputs & UI:** Slate backgrounds (#1a2332) with teal borders/accents
+- **Light Theme:** Teal accents (#00d4ff) maintained for consistency across both modes
+
+**Files Updated:**
+- `src/css/style.css` — CSS custom properties (`:root` and `[data-theme="light"]`) changed to Modern Teal palette
+- `src/css/announcement.css` — Announcement cards now use CSS variables for theme switching; hover shadow updated to teal; hardcoded dark grays replaced
+- `announcement.html` — Placeholder image added with teal accent colours
+
+**Visual Impact:**
+- Logo "TASTYTV" now glows in vibrant teal instead of red
+- All buttons and interactive elements feature teal accents (REGISTER, ✓ ADD TO WATCHLIST, REMOVE, etc.)
+- Navigation highlights and active states use teal for visual consistency
+- Cards maintain slate blue backgrounds with teal borders/text highlights
+- Theme toggle (Dark/Light) applies the teal palette to both modes
+- Hover effects on announcement cards use teal glow (`rgba(0, 212, 255, 0.2)`)
+
+**Implementation Notes:**
+- All 7 CSS files reference theme variables so changes apply site-wide (`var(--accent)`, `var(--card-bg)`, etc.)
+- No breaking changes — all existing functionality preserved
+- Both dark and light themes now feature Modern Teal for a consistent, premium aesthetic
+- Accessibility maintained with good contrast ratios between text and backgrounds
 
 ## Testing
 
